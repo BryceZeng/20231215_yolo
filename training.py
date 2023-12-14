@@ -31,6 +31,7 @@ results2[1]
 
 results2 = model2.predict(source=r'test\images\000198.jpg', conf=0.15)
 ####################################################
+# Testing
 ####################################################
 
 # Load the image
