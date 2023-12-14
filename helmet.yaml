@@ -1,0 +1,6 @@
+train: 'train/images'
+val: 'valid/images'
+
+names:
+  0: 'person'
+  1: 'helmet'
