@@ -6,6 +6,8 @@ from IPython.display import display, Image
 import torch
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+import glob
+
 
 model = YOLO(f'yolov8n.pt')
 results = model.predict(source='https://carbonicsolutions.com/wp-content/uploads/2016/12/Linde-CO2-Truck.jpg', conf=0.25)
@@ -15,7 +17,8 @@ results = model.predict(source='https://carbonicsolutions.com/wp-content/uploads
 # results[0].boxes.cls
 
 results = model.train(
-    data="helmet2.yaml", epochs=5, batch=1, name="yolov8n_helmet"
+    data="helmet2.yaml", epochs=15, batch=25, name="yolov8n_helmet_new",resume=True,
+    cos_lr=True, mosaic=0.8
 )
 
 
@@ -29,13 +32,16 @@ results2 = model2.predict(image_paths, conf=0.15)
 
 results2[1]
 
-results2 = model2.predict(source=r'test\images\000198.jpg', conf=0.15)
+results2 = model2.predict(source=r'test\images\000167.jpg', conf=0.15)
+results2 = model2.predict(source=r'test\images\000068.jpg', conf=0.15)
+
 ####################################################
 # Testing
 ####################################################
 
 # Load the image
-img = plt.imread(r'test\images\000198.jpg')
+img = plt.imread(r'test\images\000167.jpg')
+img = plt.imread(r'test\images\000068.jpg')
 
 # Create a new figure with a specific size (in inches)
 fig, ax = plt.subplots(1, figsize=(12, 9))
@@ -62,6 +68,12 @@ img = plt.imread('datasets/train/images/000002.jpg')
 plt.figure(figsize=(20, 12))
 plt.imshow(img)
 plt.show()
+####################################################
+# Val
+####################################################
+# Get all .jpg files in the 'images' sub-folder of the 'test' folder
+image_paths = glob.glob('test/images/*.jpg')
+results2 = model2.predict(image_paths, conf=0.15)
 
 
 # !yolo task=detect \
@@ -86,3 +98,8 @@ plt.show()
 # results = trained_model.predict(source='https://media.roboflow.com/notebooks/examples/dog.jpeg', conf=0.25)
 
 # results.model
+
+# !yolo task=detect \
+# mode=val \
+# model=runs\detect\yolov8n_helmet62\weights\best.pt \
+# data=val.yaml

@@ -51,8 +51,14 @@ label_map = {
     "hat": 1,
 }
 convert_xmls_to_txt(input_dir, output_dir, label_map)
-
-
+####
+input_dir = "train/labels"
+output_dir = "train/labels"
+label_map = {
+    "Head_with_Helmet": 0,
+    "Head_without_covering": 1,
+}
+convert_xmls_to_txt(input_dir, output_dir, label_map)
 ######################################
 import os
 import shutil
@@ -79,3 +85,16 @@ for image_file, label_file in train_data:
 for image_file, label_file in test_data:
     shutil.move(os.path.join(image_dir, image_file), os.path.join('datasets/test/images', image_file))
     shutil.move(os.path.join(label_dir, label_file), os.path.join('datasets/test/labels', label_file))
+
+import os
+
+def add_prefix_to_files(directory, prefix):
+    for filename in os.listdir(directory):
+        if not filename.startswith(prefix):  # Avoid renaming already renamed files
+            new_filename = prefix + filename
+            source = os.path.join(directory, filename)
+            destination = os.path.join(directory, new_filename)
+            os.rename(source, destination)  # Rename the file
+
+# Use the function
+add_prefix_to_files('datasets/val/labels', 'linde_')
