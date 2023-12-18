@@ -1,6 +1,0 @@
-names:
-- person
-- helmet
-nc: 2
-train: train/images
-val: test/images

@@ -1,0 +1,6 @@
+names:
+- Head_without_covering
+- Head_with_Helmet
+nc: 2
+train: train/images
+val: test/images

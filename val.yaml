@@ -1,7 +1,0 @@
-# data.yaml
-names:
-- person
-- helmet
-nc: 2
-train: val
-val: val  # path to test images

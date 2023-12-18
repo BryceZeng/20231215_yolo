@@ -9,7 +9,7 @@ import matplotlib.patches as patches
 import glob
 
 
-model = YOLO(f'yolov8n.pt')
+model = YOLO(f'yolov8s.pt')
 results = model.predict(source='https://carbonicsolutions.com/wp-content/uploads/2016/12/Linde-CO2-Truck.jpg', conf=0.25)
 
 # results[0].boxes.xyxy
@@ -17,7 +17,7 @@ results = model.predict(source='https://carbonicsolutions.com/wp-content/uploads
 # results[0].boxes.cls
 
 results = model.train(
-    data="helmet2.yaml", epochs=15, batch=25, name="yolov8n_helmet_new",resume=True,
+    data="helmet2.yaml", epochs=15, batch=25, name="yolov8s_helmet",resume=True,
     cos_lr=True, mosaic=0.8
 )
 
