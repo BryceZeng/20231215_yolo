@@ -52,11 +52,11 @@ label_map = {
 }
 convert_xmls_to_txt(input_dir, output_dir, label_map)
 ####
-input_dir = "train/labels"
-output_dir = "train/labels"
+input_dir = r"linde_helmet\labels"
+output_dir = r"linde_helmet\labels"
 label_map = {
-    "Head_with_Helmet": 0,
-    "Head_without_covering": 1,
+    "Head_with_Helmet": 1,
+    "Head_without_covering": 0,
 }
 convert_xmls_to_txt(input_dir, output_dir, label_map)
 ######################################
